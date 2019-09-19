@@ -24,7 +24,7 @@ final class JSON
      */
     public static function encode($data): string
     {
-        $encodedData = json_encode($data, JSON_UNESCAPED_UNICODE);
+        $encodedData = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_IGNORE);
 
         if (JSON_ERROR_NONE !== json_last_error() || false === $encodedData) {
             throw new JsonException(sprintf('Could not encode value into JSON format. Error was: "%s".', json_last_error_msg()));
